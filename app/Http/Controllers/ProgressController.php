@@ -12,7 +12,7 @@ class ProgressController extends Controller
         $progress = Progress::all();
         return  response()->json([
             'message' => 'success fetch progress',
-            'success' => true,
+            'status' => true,
             'code' => 200,
             'data' => $progress
         ]);
@@ -27,14 +27,14 @@ class ProgressController extends Controller
 
             return response()->json([
                 'message' => 'progress created',
-                'success' => true,
+                'status' => true,
                 'code' => 200,
                 'data' => []
             ], 200);
         } catch (\Throwable $th) {
             return response()->json([
                 'message' => 'Internal Server Error',
-                'success' => false,
+                'status' => false,
                 'code' => 500,
                 'data' => []
             ], 500);
@@ -48,24 +48,24 @@ class ProgressController extends Controller
             if (!$progress) {
                 return response()->json([
                     'message' => 'Progress not found',
-                    'success' => false,
+                    'status' => false,
                     'code' => 404,
                     'data' => []
                 ], 404);
             }
-            
+
             $progress->status = 2;
             $progress->save();
             return response()->json([
                 'message' => 'progress updated',
-                'success' => true,
+                'status' => true,
                 'code' => 200,
                 'data' => []
             ], 200);
         } catch (\Throwable $th) {
             return response()->json([
-                'message' => 'Internal Server Error ' .$th,
-                'success' => false,
+                'message' => 'Internal Server Error ',
+                'status' => false,
                 'code' => 500,
                 'data' => []
             ], 500);

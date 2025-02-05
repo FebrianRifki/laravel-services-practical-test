@@ -20,7 +20,7 @@ class CourseController extends Controller
         } catch (\Throwable $th) {
             return response()->json([
                 'status' => false,
-                'message' => 'Internal Server Error!',
+                'message' => 'Internal Server Error!'  .$th,
                 'code' => 500,
                 'data' => []
             ]);
@@ -42,22 +42,23 @@ class CourseController extends Controller
                      'data' => []
                 ], 400);
             }
-
+            
             $course = Course::create([
                 'name' => $request->name,
                 'description' => $request->description,
+                'instructure_id' => $request->instructure_id,
                 'created_at' => now(),
             ]);
 
             return response()->json([
-                'status' => 'success', 
-                'message' => 'course created', 
+                'status' => false, 
+                'message' => 'course created ', 
                 'data' => $course
             ], 201);
 
         } catch (\Throwable $th) {
             return response()->json([
-                'status' => 'success', 
+                'status' => false, 
                 'message' => 'Internal Server Error! ', 
                 'data' => []
             ], 500);

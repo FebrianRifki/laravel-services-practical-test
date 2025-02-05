@@ -9,6 +9,7 @@ class Course extends Model implements JWTSubject
 {
     protected $fillable = [
         'name',
+        'instrucutre_id',
         'description'
     ];
     

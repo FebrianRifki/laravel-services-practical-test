@@ -11,12 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('courses', function (Blueprint $table) {
+        Schema::create('instructures', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->unsignedBigInteger('instructure_id');
-            $table->foreign('instructure_id')->references('id')->on('instructures')->onDelete('cascade');
-            $table->longText('description');
             $table->timestamps();
         });
     }
@@ -26,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('courses');
+        Schema::dropIfExists('instructures');
     }
 };
